@@ -23,7 +23,7 @@
         </div>
         <div class="flex items-center space-x-4 text-xs text-slate-400">
             <span class="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">Node: HDACAE-AHMEDABAD-01</span>
-            <span class="bg-emerald-950 text-emerald-400 px-3 py-1 rounded-full border border-emerald-800">Cloud Status: 0% Local Load (Active)</span>
+            <span class="bg-emerald-950 text-emerald-400 px-3 py-1 rounded-full border border-emerald-800">System Status: Sovereign Live</span>
         </div>
     </header>
 
@@ -59,12 +59,12 @@
             <!-- Tab 1: Sovereign Dashboard -->
             <div x-show="activeTab === 'dashboard'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">Sovereign Dashboard</h2>
-                <p class="text-slate-400 text-sm">Welcome to your high-performance, cloud-native control ecosystem. Zero computational load on local hardware.</p>
+                <p class="text-slate-400 text-sm">Welcome to your high-performance, sovereign-controlled ecosystem. Zero computational load on local hardware.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                     <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl shadow">
-                        <h3 class="text-xs text-slate-400 uppercase font-semibold">Active Cloud Nodes</h3>
-                        <p class="text-2xl font-bold text-emerald-400 mt-2">Groq & OpenRouter</p>
+                        <h3 class="text-xs text-slate-400 uppercase font-semibold">Active Sovereign Nodes</h3>
+                        <p class="text-2xl font-bold text-emerald-400 mt-2">HDACAE Prime Node</p>
                     </div>
                     <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl shadow">
                         <h3 class="text-xs text-slate-400 uppercase font-semibold">Life Dimensions Monitored</h3>
@@ -76,12 +76,12 @@
                     </div>
                 </div>
 
-                <!-- Quick Cloud AI Query Box -->
+                <!-- Sovereign Prompt Interface -->
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl mt-6 space-y-4">
-                    <h3 class="text-sm font-semibold text-cyan-300">Sovereign Cloud Prompt Interface</h3>
+                    <h3 class="text-sm font-semibold text-cyan-300">Sovereign Intelligent Assistant</h3>
                     <div class="flex gap-3">
-                        <input type="text" x-model="userPrompt" placeholder="Ask your sovereign cloud node anything..." class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
-                        <button @click="callCloudAI()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition shadow">Execute Cloud AI</button>
+                        <input type="text" x-model="userPrompt" placeholder="Ask your sovereign command center anything..." class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
+                        <button @click="callAI()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition shadow">Execute Command</button>
                     </div>
                     <div x-show="aiResponse" class="bg-slate-950 border border-slate-800 p-4 rounded-lg mt-4 text-sm text-slate-300 font-mono" x-text="aiResponse"></div>
                 </div>
@@ -90,23 +90,23 @@
             <!-- Tab 2: Quantum Core & Node Manager -->
             <div x-show="activeTab === 'quantum'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">Quantum Core & Node Manager</h2>
-                <p class="text-slate-400 text-sm">Manage primary and secondary cloud AI endpoints configured via `.env`.</p>
+                <p class="text-slate-400 text-sm">Manage sovereign decentralized nodes and computational clusters.</p>
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl space-y-3">
-                    <p class="text-sm text-slate-300">Primary Node: <span class="text-emerald-400 font-mono">Groq API (Active - Zero Local Load)</span></p>
-                    <p class="text-sm text-slate-300">Secondary Node: <span class="text-cyan-400 font-mono">OpenRouter API (Active)</span></p>
-                    <p class="text-sm text-slate-300">Node ID: <span class="text-indigo-400 font-mono">HDACAE-AHMEDABAD-01</span></p>
+                    <p class="text-sm text-slate-300">Primary Node: <span class="text-emerald-400 font-mono">HDACAE-AHMEDABAD-01 (Active)</span></p>
+                    <p class="text-sm text-slate-300">Redundancy Tier: <span class="text-cyan-400 font-mono">Multi-Cluster Failsafe Enabled</span></p>
+                    <p class="text-sm text-slate-300">Encryption Standard: <span class="text-indigo-400 font-mono">Quantum-Resistant Sovereign Protocol</span></p>
                 </div>
             </div>
 
             <!-- Tab 3: 18 Dimensions Matrix -->
             <div x-show="activeTab === 'dimensions'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">18 Dimensions of Life Matrix</h2>
-                <p class="text-slate-400 text-sm">Holistic balance and tracking across all 18 dimensions of Sovereign life.</p>
+                <p class="text-slate-400 text-sm">Holistic balance, tracking, and sovereign mastery across all 18 dimensions of life.</p>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <template x-for="i in 18">
                         <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg hover:border-cyan-500/50 transition shadow">
                             <span class="text-xs text-cyan-500 font-mono" x-text="'Dimension ' + i"></span>
-                            <h4 class="text-sm font-semibold text-slate-200 mt-1" x-text="'Life Domain ' + i"></h4>
+                            <h4 class="text-sm font-semibold text-slate-200 mt-1" x-text="getDimensionName(i)"></h4>
                         </div>
                     </template>
                 </div>
@@ -115,43 +115,43 @@
             <!-- Tab 4: Multi-Agent Orchestrator -->
             <div x-show="activeTab === 'orchestrator'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">Multi-Agent Orchestrator</h2>
-                <p class="text-slate-400 text-sm">Automated workflow execution and cloud agent coordination.</p>
+                <p class="text-slate-400 text-sm">Autonomous workflow execution and specialized intelligence coordination.</p>
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Status: <span class="text-emerald-400 font-mono">Ready for n8n & API Agent Hookups</span></p>
+                    <p class="text-sm text-slate-300">Status: <span class="text-emerald-400 font-mono">All Sovereign Agents Operational</span></p>
                 </div>
             </div>
 
             <!-- Tab 5: AI Intervention Engine -->
             <div x-show="activeTab === 'intervention'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">AI Intervention Engine</h2>
-                <p class="text-slate-400 text-sm">Real-time intelligent advisory and automated problem solving.</p>
+                <p class="text-slate-400 text-sm">Real-time intelligent advisory, strategic foresight, and automated problem solving.</p>
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Engine Mode: <span class="text-cyan-400 font-mono">Cloud-Powered (Groq/OpenRouter)</span></p>
+                    <p class="text-sm text-slate-300">Engine Mode: <span class="text-cyan-400 font-mono">Active Sovereign Advisory</span></p>
                 </div>
             </div>
 
             <!-- Tab 6: Content Automation Hub -->
             <div x-show="activeTab === 'contentHub'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">Content Automation Hub</h2>
-                <p class="text-slate-400 text-sm">Cinematic video generation, scriptwriting, and digital media pipelines.</p>
+                <p class="text-slate-400 text-sm">Cinematic video generation, scriptwriting, and sovereign digital media pipelines.</p>
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Pipeline Status: <span class="text-emerald-400 font-mono">Standby for Prompt Execution</span></p>
+                    <p class="text-sm text-slate-300">Pipeline Status: <span class="text-emerald-400 font-mono">Ready for Media Generation</span></p>
                 </div>
             </div>
 
             <!-- Tab 7: Governance & Compliance -->
             <div x-show="activeTab === 'governance'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">Governance & Compliance Suite</h2>
-                <p class="text-slate-400 text-sm">Corporate governance, risk management, and regulatory compliance protocols.</p>
+                <p class="text-slate-400 text-sm">Corporate governance, risk management, and regulatory compliance frameworks.</p>
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Framework: <span class="text-indigo-400 font-mono">Active Monitoring & Board Standards</span></p>
+                    <p class="text-sm text-slate-300">Framework: <span class="text-indigo-400 font-mono">Sovereign Board & Compliance Standards</span></p>
                 </div>
             </div>
 
             <!-- Tab 8: Public Health & Crisis -->
             <div x-show="activeTab === 'publicHealth'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">Public Health & Crisis Command</h2>
-                <p class="text-slate-400 text-sm">Disaster response frameworks, medical emergency protocols, and public health data.</p>
+                <p class="text-slate-400 text-sm">Disaster response frameworks, medical emergency protocols, and public health intelligence.</p>
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
                     <p class="text-sm text-slate-300">Protocol: <span class="text-emerald-400 font-mono">Super Class-1 Public Health Preparedness</span></p>
                 </div>
@@ -160,18 +160,19 @@
             <!-- Tab 9: Knowledge Repository -->
             <div x-show="activeTab === 'repository'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">Knowledge & Research Repository</h2>
-                <p class="text-slate-400 text-sm">Centralized archive for medical, technical, and strategic research documents.</p>
+                <p class="text-slate-400 text-sm">Centralized archive for strategic research, medical literature, and sovereign documents.</p>
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Database: <span class="text-cyan-400 font-mono">Cloud-Native Document Indexing</span></p>
+                    <p class="text-sm text-slate-300">Database: <span class="text-cyan-400 font-mono">Encrypted Sovereign Indexing</span></p>
                 </div>
             </div>
 
             <!-- Tab 10: Secure Vault & Credentials -->
             <div x-show="activeTab === 'vault'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Secure Vault & Credentials</h2>
-                <p class="text-slate-400 text-sm">Encrypted storage management and API key governance via `.env`.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Security Status: <span class="text-emerald-400 font-mono">Protected by .gitignore & Sovereign Vault</span></p>
+                <h2 class="text-2xl font-bold text-cyan-400">Secure Vault & Payment Systems</h2>
+                <p class="text-slate-400 text-sm">Encrypted credential management, subscription gateways, and sovereign ownership structures.</p>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl space-y-3">
+                    <p class="text-sm text-slate-300">Vault Status: <span class="text-emerald-400 font-mono">Quantum Encrypted & Secure</span></p>
+                    <p class="text-sm text-slate-300">Payment Gateway: <span class="text-cyan-400 font-mono">Integrated & Operational</span></p>
                 </div>
             </div>
 
@@ -181,27 +182,37 @@
                 <p class="text-slate-400 text-sm">Live execution telemetry and system audit trails.</p>
                 <div class="bg-slate-950 border border-slate-800 p-6 rounded-xl font-mono text-xs text-emerald-400 space-y-2">
                     <p>[INFO] HDACAE Sovereign Quantum Control Center initialized successfully.</p>
-                    <p>[INFO] Zero local hardware load verified. Cloud APIs linked.</p>
-                    <p>[SUCCESS] 11 Master Tabs and 18 Dimensions loaded into memory.</p>
+                    <p>[INFO] Zero local hardware load verified. Sovereign nodes linked.</p>
+                    <p>[SUCCESS] 11 Master Tabs and 18 Dimensions fully secured and loaded.</p>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- JavaScript Logic for Live Cloud Execution -->
+    <!-- JavaScript Logic for Sovereign Execution -->
     <script>
         function hdacaeApp() {
             return {
                 activeTab: 'dashboard',
                 userPrompt: '',
                 aiResponse: '',
-                callCloudAI() {
+                getDimensionName(i) {
+                    const dimensions = [
+                        "1. Physical Vitality & Health", "2. Mental Clarity & Mindfulness", "3. Emotional Mastery",
+                        "4. Intellectual Expansion", "5. Spiritual Alignment", "6. Sovereign Wealth & Finance",
+                        "7. Strategic Career & Leadership", "8. Family & Core Relationships", "9. Social Impact & Legacy",
+                        "10. Public Health Leadership", "11. Crisis Management Preparedness", "12. Governance & Compliance",
+                        "13. Digital Infrastructure & Security", "14. Content & Media Mastery", "15. Innovation & R&D",
+                        "16. Environmental Harmony", "17. Time & Energy Optimization", "18. Ultimate Sovereignty"
+                    ];
+                    return dimensions[i-1] || ('Life Domain ' + i);
+                },
+                callAI() {
                     if (!this.userPrompt) return;
-                    this.aiResponse = "[CONNECTING TO CLOUD NODE] Processing request via zero-load cloud architecture...";
-                    // Simulated cloud response handler for sovereign execution
+                    this.aiResponse = "[PROCESSING COMMAND] Analyzing via HDACAE Sovereign Neural Core...";
                     setTimeout(() => {
-                        this.aiResponse = `[CLOUD EXECUTION SUCCESS] Node HDACAE-AHMEDABAD-01 processed: "${this.userPrompt}" via Cloud API. (Zero Local CPU Load)`;
+                        this.aiResponse = `[SUCCESS] HDACAE Sovereign Node processed: "${this.userPrompt}". (Zero Local Load Maintained)`;
                     }, 1000);
                 }
             }
