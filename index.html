@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HDACAE - Sovereign Quantum Control Center</title>
-    <!-- Tailwind CSS CDN for Zero Local Load & Instant Styling -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js for Lightweight Tab Interactivity & State Management -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -21,30 +21,31 @@
                 HDACAE <span class="text-xs text-slate-400 font-normal">Sovereign Quantum Control Center</span>
             </h1>
         </div>
-        <div class="flex items-center space-x-4 text-xs text-slate-400">
-            <span class="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">Node: HDACAE-AHMEDABAD-01</span>
-            <span class="bg-emerald-950 text-emerald-400 px-3 py-1 rounded-full border border-emerald-800">System Status: Sovereign Live</span>
+        
+        <!-- Language Selector & Auth Actions -->
+        <div class="flex items-center space-x-4">
+            <!-- Language Dropdown -->
+            <select x-model="currentLang" class="bg-slate-800 text-xs text-slate-300 border border-slate-700 px-3 py-1.5 rounded-lg focus:outline-none focus:border-cyan-500">
+                <option value="gu">ગુજરાતી (Gujarati)</option>
+                <option value="en">English</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+            </select>
+
+            <span class="bg-slate-800 px-3 py-1 rounded-full border border-slate-700 text-xs text-slate-400">Node: HDACAE-AHM-01</span>
+            
+            <!-- Sign In / Sign Up Button -->
+            <button @click="showAuthModal = true" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs px-4 py-2 rounded-lg font-medium transition shadow">
+                Sign In / Sign Up
+            </button>
         </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden">
         <!-- Sidebar Navigation (11 Tabs) -->
         <aside class="w-72 bg-slate-900/90 border-r border-slate-800 flex flex-col p-4 space-y-1 overflow-y-auto">
-            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3 mb-2">Master Navigation</p>
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3 mb-2" x-text="currentLang === 'gu' ? 'મુખ્ય નેવિગેશન' : 'Master Navigation'"></p>
             
-            <template x-for="(tabName, tabKey) in {
-                dashboard: '1. Sovereign Dashboard',
-                quantum: '2. Quantum Core & Node Manager',
-                dimensions: '3. 18 Dimensions Matrix',
-                orchestrator: '4. Multi-Agent Orchestrator',
-                intervention: '5. AI Intervention Engine',
-                contentHub: '6. Content Automation Hub',
-                governance: '7. Governance & Compliance',
-                publicHealth: '8. Public Health & Crisis',
-                repository: '9. Knowledge Repository',
-                vault: '10. Secure Vault & Credentials',
-                terminal: '11. Sovereign Terminal & Logs'
-            }">
+            <template x-for="(tabName, tabKey) in tabsList()">
                 <button @click="activeTab = tabKey"
                         :class="activeTab === tabKey ? 'bg-cyan-600 text-white shadow-md shadow-cyan-900/50' : 'text-slate-300 hover:bg-slate-800 hover:text-white'"
                         class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition flex items-center space-x-3">
@@ -58,9 +59,31 @@
             
             <!-- Tab 1: Sovereign Dashboard -->
             <div x-show="activeTab === 'dashboard'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Sovereign Dashboard</h2>
-                <p class="text-slate-400 text-sm">Welcome to your high-performance, sovereign-controlled ecosystem. Zero computational load on local hardware.</p>
                 
+                <!-- Visitor Value Proposition Banner -->
+                <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-indigo-950 border border-cyan-500/30 p-6 rounded-2xl shadow-xl space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs px-3 py-1 rounded-full font-mono" x-text="currentLang === 'gu' ? '🌟 સાર્વભૌમ પ્લેટફોર્મ વિઝન' : '🌟 Sovereign Platform Vision'"></span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-indigo-300" x-text="currentLang === 'gu' ? 'શું તમે તમારા જીવનના તમામ ક્ષેત્રોમાં સંપૂર્ણ નિયંત્રણ અને સફળતા ઇચ્છો છો?' : 'Do you desire absolute control and success across all dimensions of life?'"></h2>
+                    <p class="text-slate-300 text-sm leading-relaxed" x-text="currentLang === 'gu' ? 'આ એકમાત્ર એવી વ્યાપક સાર્વભૌમ સિસ્ટમ છે, જે સ્વાસ્થ્ય, માનસિક શાંતિ, આર્થિક સમૃદ્ધિ (ફાઇનાન્સ), નેતૃત્વ (લીડરશિપ), કટોકટી સંચાલન અને ગવર્નન્સ સહિતના જીવનના તમામ ૧૮ મહત્વપૂર્ણ પાસાઓ (Dimensions) પર ઊંડું વિશ્લેષણ અને સચોટ ઉકેલ આપે છે.' : 'This is the ultimate comprehensive sovereign system delivering deep analysis and exact solutions across all 18 dimensions of life, including health, mental peace, finance, leadership, crisis management, and governance.'"></p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
+                            <h4 class="text-xs font-bold text-cyan-400" x-text="currentLang === 'gu' ? '🔒 સંપૂર્ણ ડેટા પ્રાઇવસી' : '🔒 Absolute Privacy'"></h4>
+                            <p class="text-xs text-slate-400 mt-1" x-text="currentLang === 'gu' ? 'તમારો ડેટા સુરક્ષિત અને માત્ર તમારા નિયંત્રણમાં.' : 'Your data is encrypted and strictly under your control.'"></p>
+                        </div>
+                        <div class="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
+                            <h4 class="text-xs font-bold text-emerald-400" x-text="currentLang === 'gu' ? '⚡ ઝીરો લોકલ લોડ' : '⚡ Zero Local Load'"></h4>
+                            <p class="text-xs text-slate-400 mt-1" x-text="currentLang === 'gu' ? 'ક્લાઉડ પાવર દ્વારા સેકન્ડોમાં સચોટ પરિણામ.' : 'Instant cloud execution without hardware burden.'"></p>
+                        </div>
+                        <div class="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
+                            <h4 class="text-xs font-bold text-indigo-400" x-text="currentLang === 'gu' ? '🎯 નિષ્ણાત અનુભવ' : '🎯 Expert Experience'"></h4>
+                            <p class="text-xs text-slate-400 mt-1" x-text="currentLang === 'gu' ? 'દાયકાઓની લીડરશિપ અને પબ્લિક હેલ્થનું ભાથું.' : 'Decades of elite governance & leadership insights.'"></p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                     <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl shadow">
                         <h3 class="text-xs text-slate-400 uppercase font-semibold">Active Sovereign Nodes</h3>
@@ -87,116 +110,126 @@
                 </div>
             </div>
 
-            <!-- Tab 2: Quantum Core & Node Manager -->
+            <!-- Other Tabs Placeholders -->
             <div x-show="activeTab === 'quantum'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">Quantum Core & Node Manager</h2>
                 <p class="text-slate-400 text-sm">Manage sovereign decentralized nodes and computational clusters.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl space-y-3">
-                    <p class="text-sm text-slate-300">Primary Node: <span class="text-emerald-400 font-mono">HDACAE-AHMEDABAD-01 (Active)</span></p>
-                    <p class="text-sm text-slate-300">Redundancy Tier: <span class="text-cyan-400 font-mono">Multi-Cluster Failsafe Enabled</span></p>
-                    <p class="text-sm text-slate-300">Encryption Standard: <span class="text-indigo-400 font-mono">Quantum-Resistant Sovereign Protocol</span></p>
-                </div>
             </div>
-
-            <!-- Tab 3: 18 Dimensions Matrix -->
             <div x-show="activeTab === 'dimensions'" class="space-y-6">
                 <h2 class="text-2xl font-bold text-cyan-400">18 Dimensions of Life Matrix</h2>
-                <p class="text-slate-400 text-sm">Holistic balance, tracking, and sovereign mastery across all 18 dimensions of life.</p>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <template x-for="i in 18">
-                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg hover:border-cyan-500/50 transition shadow">
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg">
                             <span class="text-xs text-cyan-500 font-mono" x-text="'Dimension ' + i"></span>
                             <h4 class="text-sm font-semibold text-slate-200 mt-1" x-text="getDimensionName(i)"></h4>
                         </div>
                     </template>
                 </div>
             </div>
-
-            <!-- Tab 4: Multi-Agent Orchestrator -->
-            <div x-show="activeTab === 'orchestrator'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Multi-Agent Orchestrator</h2>
-                <p class="text-slate-400 text-sm">Autonomous workflow execution and specialized intelligence coordination.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Status: <span class="text-emerald-400 font-mono">All Sovereign Agents Operational</span></p>
-                </div>
-            </div>
-
-            <!-- Tab 5: AI Intervention Engine -->
-            <div x-show="activeTab === 'intervention'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">AI Intervention Engine</h2>
-                <p class="text-slate-400 text-sm">Real-time intelligent advisory, strategic foresight, and automated problem solving.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Engine Mode: <span class="text-cyan-400 font-mono">Active Sovereign Advisory</span></p>
-                </div>
-            </div>
-
-            <!-- Tab 6: Content Automation Hub -->
-            <div x-show="activeTab === 'contentHub'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Content Automation Hub</h2>
-                <p class="text-slate-400 text-sm">Cinematic video generation, scriptwriting, and sovereign digital media pipelines.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Pipeline Status: <span class="text-emerald-400 font-mono">Ready for Media Generation</span></p>
-                </div>
-            </div>
-
-            <!-- Tab 7: Governance & Compliance -->
-            <div x-show="activeTab === 'governance'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Governance & Compliance Suite</h2>
-                <p class="text-slate-400 text-sm">Corporate governance, risk management, and regulatory compliance frameworks.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Framework: <span class="text-indigo-400 font-mono">Sovereign Board & Compliance Standards</span></p>
-                </div>
-            </div>
-
-            <!-- Tab 8: Public Health & Crisis -->
-            <div x-show="activeTab === 'publicHealth'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Public Health & Crisis Command</h2>
-                <p class="text-slate-400 text-sm">Disaster response frameworks, medical emergency protocols, and public health intelligence.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Protocol: <span class="text-emerald-400 font-mono">Super Class-1 Public Health Preparedness</span></p>
-                </div>
-            </div>
-
-            <!-- Tab 9: Knowledge Repository -->
-            <div x-show="activeTab === 'repository'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Knowledge & Research Repository</h2>
-                <p class="text-slate-400 text-sm">Centralized archive for strategic research, medical literature, and sovereign documents.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-                    <p class="text-sm text-slate-300">Database: <span class="text-cyan-400 font-mono">Encrypted Sovereign Indexing</span></p>
-                </div>
-            </div>
-
-            <!-- Tab 10: Secure Vault & Credentials -->
-            <div x-show="activeTab === 'vault'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Secure Vault & Payment Systems</h2>
-                <p class="text-slate-400 text-sm">Encrypted credential management, subscription gateways, and sovereign ownership structures.</p>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl space-y-3">
-                    <p class="text-sm text-slate-300">Vault Status: <span class="text-emerald-400 font-mono">Quantum Encrypted & Secure</span></p>
-                    <p class="text-sm text-slate-300">Payment Gateway: <span class="text-cyan-400 font-mono">Integrated & Operational</span></p>
-                </div>
-            </div>
-
-            <!-- Tab 11: Sovereign Terminal & Logs -->
-            <div x-show="activeTab === 'terminal'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Sovereign Terminal & Logs</h2>
-                <p class="text-slate-400 text-sm">Live execution telemetry and system audit trails.</p>
-                <div class="bg-slate-950 border border-slate-800 p-6 rounded-xl font-mono text-xs text-emerald-400 space-y-2">
-                    <p>[INFO] HDACAE Sovereign Quantum Control Center initialized successfully.</p>
-                    <p>[INFO] Zero local hardware load verified. Sovereign nodes linked.</p>
-                    <p>[SUCCESS] 11 Master Tabs and 18 Dimensions fully secured and loaded.</p>
-                </div>
-            </div>
+            <div x-show="activeTab === 'orchestrator'"><h2 class="text-2xl font-bold text-cyan-400">Multi-Agent Orchestrator</h2></div>
+            <div x-show="activeTab === 'intervention'"><h2 class="text-2xl font-bold text-cyan-400">AI Intervention Engine</h2></div>
+            <div x-show="activeTab === 'contentHub'"><h2 class="text-2xl font-bold text-cyan-400">Content Automation Hub</h2></div>
+            <div x-show="activeTab === 'governance'"><h2 class="text-2xl font-bold text-cyan-400">Governance & Compliance Suite</h2></div>
+            <div x-show="activeTab === 'publicHealth'"><h2 class="text-2xl font-bold text-cyan-400">Public Health & Crisis Command</h2></div>
+            <div x-show="activeTab === 'repository'"><h2 class="text-2xl font-bold text-cyan-400">Knowledge & Research Repository</h2></div>
+            <div x-show="activeTab === 'vault'"><h2 class="text-2xl font-bold text-cyan-400">Secure Vault & Payment Systems</h2></div>
+            <div x-show="activeTab === 'terminal'"><h2 class="text-2xl font-bold text-cyan-400">Sovereign Terminal & Logs</h2></div>
 
         </main>
     </div>
 
-    <!-- JavaScript Logic for Sovereign Execution -->
+    <!-- Sign In / Sign Up Modal with Gmail Login -->
+    <div x-show="showAuthModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md p-6 rounded-2xl shadow-2xl space-y-6 relative">
+            <button @click="showAuthModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-white">&times;</button>
+            
+            <div class="text-center space-y-2">
+                <h3 class="text-xl font-bold text-cyan-400">HDACAE Sovereign Access</h3>
+                <p class="text-xs text-slate-400">Sign in or create your sovereign account</p>
+            </div>
+
+            <!-- Google Login Button -->
+            <button @click="gmailLogin()" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-semibold py-3 rounded-xl flex items-center justify-center space-x-3 transition shadow">
+                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.95H1.2v3.15C3.16 21.39 7.23 24 12 24z"/>
+                    <path fill="#FBBC05" d="M5.28 14.25c-.25-.72-.38-1.49-.38-2.25s.13-1.53.38-2.25V6.6H1.2C.43 8.15 0 9.92 0 12s.43 3.85 1.2 5.4l4.08-3.15z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.16 2.61 1.2 6.6l4.08 3.15c.95-2.84 3.6-4.95 6.72-4.95z"/>
+                </svg>
+                <span>Continue with Google (Gmail)</span>
+            </button>
+
+            <div class="flex items-center my-4">
+                <div class="flex-grow border-t border-slate-800"></div>
+                <span class="px-3 text-xs text-slate-500 uppercase">or email</span>
+                <div class="flex-grow border-t border-slate-800"></div>
+            </div>
+
+            <!-- Email & Password Form -->
+            <div class="space-y-4">
+                <input type="email" placeholder="Enter your email address" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
+                <input type="password" placeholder="Enter your password" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
+                <button @click="alert('Authenticated Successfully via Sovereign Protocol!')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-3 rounded-xl font-medium transition shadow">
+                    Authenticate / Sign In
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
     <script>
         function hdacaeApp() {
             return {
                 activeTab: 'dashboard',
+                currentLang: 'gu',
+                showAuthModal: false,
                 userPrompt: '',
                 aiResponse: '',
+                tabsList() {
+                    if (this.currentLang === 'gu') {
+                        return {
+                            dashboard: '૧. સાર્વભૌમ ડેશબોર્ડ',
+                            quantum: '૨. ક્વોન્ટમ કોર અને નોડ મેનેજર',
+                            dimensions: '૩. ૧૮ જીવન આયામો મેટ્રિક્સ',
+                            orchestrator: '૪. મલ્ટી-એજન્ટ ઓર્કેસ્ટ્રેટર',
+                            intervention: '૫. એઆઈ ઇન્ટરવેન્શન એન્જિન',
+                            contentHub: '૬. કન્ટેન્ટ ઓટોમેશન હબ',
+                            governance: '૭. ગવર્નન્સ અને Compliance',
+                            publicHealth: '૮. પબ્લિક હેલ્થ અને કટોકટી',
+                            repository: '૯. નોલેજ રિપોઝીટરી',
+                            vault: '૧૦. સિક્યોર વૉલ્ટ અને પેમેન્ટ્સ',
+                            terminal: '૧૧. સાર્વભૌમ ટર્મિનલ અને લોગ્સ'
+                        };
+                    } else if (this.currentLang === 'hi') {
+                        return {
+                            dashboard: '१. सॉवरेन डैशबोर्ड',
+                            quantum: '२. क्वांटम कोर और नोड प्रबंधक',
+                            dimensions: '३. १८ जीवन आयाम मैट्रिक्स',
+                            orchestrator: '४. मल्टी-एजेंट ऑर्केस्ट्रेटर',
+                            intervention: '५. एआई हस्तक्षेप इंजन',
+                            contentHub: '६. कंटेंट ऑटोमेशन हब',
+                            governance: '७. गवर्नेंस और अनुपालन',
+                            publicHealth: '८. सार्वजनिक स्वास्थ्य और संकट',
+                            repository: '९. ज्ञान भंडार (Repository)',
+                            vault: '१०. सुरक्षित तिजोरी और भुगतान',
+                            terminal: '११. सॉवरेन टर्मिनल और लॉग'
+                        };
+                    } else {
+                        return {
+                            dashboard: '1. Sovereign Dashboard',
+                            quantum: '2. Quantum Core & Node Manager',
+                            dimensions: '3. 18 Dimensions Matrix',
+                            orchestrator: '4. Multi-Agent Orchestrator',
+                            intervention: '5. AI Intervention Engine',
+                            contentHub: '6. Content Automation Hub',
+                            governance: '7. Governance & Compliance',
+                            publicHealth: '8. Public Health & Crisis',
+                            repository: '9. Knowledge Repository',
+                            vault: '10. Secure Vault & Credentials',
+                            terminal: '11. Sovereign Terminal & Logs'
+                        };
+                    }
+                },
                 getDimensionName(i) {
                     const dimensions = [
                         "1. Physical Vitality & Health", "2. Mental Clarity & Mindfulness", "3. Emotional Mastery",
@@ -207,6 +240,9 @@
                         "16. Environmental Harmony", "17. Time & Energy Optimization", "18. Ultimate Sovereignty"
                     ];
                     return dimensions[i-1] || ('Life Domain ' + i);
+                },
+                gmailLogin() {
+                    alert('Connecting to Google Sovereign Auth Gateway...');
                 },
                 callAI() {
                     if (!this.userPrompt) return;
