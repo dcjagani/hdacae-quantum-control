@@ -27,14 +27,14 @@
             <!-- Language Dropdown -->
             <select x-model="currentLang" class="bg-slate-800 text-xs text-slate-300 border border-slate-700 px-3 py-1.5 rounded-lg focus:outline-none focus:border-cyan-500">
                 <option value="gu">ગુજરાતી (Gujarati)</option>
-                <option value="en">English</option>
                 <option value="hi">हिन्दी (Hindi)</option>
+                <option value="en">English</option>
             </select>
 
             <span class="bg-slate-800 px-3 py-1 rounded-full border border-slate-700 text-xs text-slate-400">Node: HDACAE-AHM-01</span>
             
             <!-- Sign In / Sign Up Button -->
-            <button @click="showAuthModal = true" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs px-4 py-2 rounded-lg font-medium transition shadow">
+            <button @click="showAuthModal = true" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs px-4 py-2 rounded-lg font-medium transition shadow" x-text="t('authBtn')">
                 Sign In / Sign Up
             </button>
         </div>
@@ -43,7 +43,7 @@
     <div class="flex flex-1 overflow-hidden">
         <!-- Sidebar Navigation (11 Tabs) -->
         <aside class="w-72 bg-slate-900/90 border-r border-slate-800 flex flex-col p-4 space-y-1 overflow-y-auto">
-            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3 mb-2" x-text="currentLang === 'gu' ? 'મુખ્ય નેવિગેશન' : 'Master Navigation'"></p>
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3 mb-2" x-text="t('navTitle')"></p>
             
             <template x-for="(tabName, tabKey) in tabsList()">
                 <button @click="activeTab = tabKey"
@@ -60,63 +60,63 @@
             <!-- Tab 1: Sovereign Dashboard -->
             <div x-show="activeTab === 'dashboard'" class="space-y-6">
                 
-                <!-- Visitor Value Proposition Banner -->
+                <!-- Visitor Value Proposition Banner (Fully Translated) -->
                 <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-indigo-950 border border-cyan-500/30 p-6 rounded-2xl shadow-xl space-y-4">
                     <div class="flex items-center space-x-2">
-                        <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs px-3 py-1 rounded-full font-mono" x-text="currentLang === 'gu' ? '🌟 સાર્વભૌમ પ્લેટફોર્મ વિઝન' : '🌟 Sovereign Platform Vision'"></span>
+                        <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs px-3 py-1 rounded-full font-mono" x-text="t('visionBadge')"></span>
                     </div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-indigo-300" x-text="currentLang === 'gu' ? 'શું તમે તમારા જીવનના તમામ ક્ષેત્રોમાં સંપૂર્ણ નિયંત્રણ અને સફળતા ઇચ્છો છો?' : 'Do you desire absolute control and success across all dimensions of life?'"></h2>
-                    <p class="text-slate-300 text-sm leading-relaxed" x-text="currentLang === 'gu' ? 'આ એકમાત્ર એવી વ્યાપક સાર્વભૌમ સિસ્ટમ છે, જે સ્વાસ્થ્ય, માનસિક શાંતિ, આર્થિક સમૃદ્ધિ (ફાઇનાન્સ), નેતૃત્વ (લીડરશિપ), કટોકટી સંચાલન અને ગવર્નન્સ સહિતના જીવનના તમામ ૧૮ મહત્વપૂર્ણ પાસાઓ (Dimensions) પર ઊંડું વિશ્લેષણ અને સચોટ ઉકેલ આપે છે.' : 'This is the ultimate comprehensive sovereign system delivering deep analysis and exact solutions across all 18 dimensions of life, including health, mental peace, finance, leadership, crisis management, and governance.'"></p>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-indigo-300" x-text="t('visionTitle')"></h2>
+                    <p class="text-slate-300 text-sm leading-relaxed" x-text="t('visionDesc')"></p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                         <div class="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
-                            <h4 class="text-xs font-bold text-cyan-400" x-text="currentLang === 'gu' ? '🔒 સંપૂર્ણ ડેટા પ્રાઇવસી' : '🔒 Absolute Privacy'"></h4>
-                            <p class="text-xs text-slate-400 mt-1" x-text="currentLang === 'gu' ? 'તમારો ડેટા સુરક્ષિત અને માત્ર તમારા નિયંત્રણમાં.' : 'Your data is encrypted and strictly under your control.'"></p>
+                            <h4 class="text-xs font-bold text-cyan-400" x-text="t('feat1Title')"></h4>
+                            <p class="text-xs text-slate-400 mt-1" x-text="t('feat1Desc')"></p>
                         </div>
                         <div class="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
-                            <h4 class="text-xs font-bold text-emerald-400" x-text="currentLang === 'gu' ? '⚡ ઝીરો લોકલ લોડ' : '⚡ Zero Local Load'"></h4>
-                            <p class="text-xs text-slate-400 mt-1" x-text="currentLang === 'gu' ? 'ક્લાઉડ પાવર દ્વારા સેકન્ડોમાં સચોટ પરિણામ.' : 'Instant cloud execution without hardware burden.'"></p>
+                            <h4 class="text-xs font-bold text-emerald-400" x-text="t('feat2Title')"></h4>
+                            <p class="text-xs text-slate-400 mt-1" x-text="t('feat2Desc')"></p>
                         </div>
                         <div class="bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
-                            <h4 class="text-xs font-bold text-indigo-400" x-text="currentLang === 'gu' ? '🎯 નિષ્ણાત અનુભવ' : '🎯 Expert Experience'"></h4>
-                            <p class="text-xs text-slate-400 mt-1" x-text="currentLang === 'gu' ? 'દાયકાઓની લીડરશિપ અને પબ્લિક હેલ્થનું ભાથું.' : 'Decades of elite governance & leadership insights.'"></p>
+                            <h4 class="text-xs font-bold text-indigo-400" x-text="t('feat3Title')"></h4>
+                            <p class="text-xs text-slate-400 mt-1" x-text="t('feat3Desc')"></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                     <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl shadow">
-                        <h3 class="text-xs text-slate-400 uppercase font-semibold">Active Sovereign Nodes</h3>
-                        <p class="text-2xl font-bold text-emerald-400 mt-2">HDACAE Prime Node</p>
+                        <h3 class="text-xs text-slate-400 uppercase font-semibold" x-text="t('card1Title')"></h3>
+                        <p class="text-2xl font-bold text-emerald-400 mt-2" x-text="t('card1Val')"></p>
                     </div>
                     <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl shadow">
-                        <h3 class="text-xs text-slate-400 uppercase font-semibold">Life Dimensions Monitored</h3>
-                        <p class="text-2xl font-bold text-cyan-400 mt-2">18 Dimensions Active</p>
+                        <h3 class="text-xs text-slate-400 uppercase font-semibold" x-text="t('card2Title')"></h3>
+                        <p class="text-2xl font-bold text-cyan-400 mt-2" x-text="t('card2Val')"></p>
                     </div>
                     <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl shadow">
-                        <h3 class="text-xs text-slate-400 uppercase font-semibold">System Security Level</h3>
-                        <p class="text-2xl font-bold text-indigo-400 mt-2">SOVEREIGN-MAX</p>
+                        <h3 class="text-xs text-slate-400 uppercase font-semibold" x-text="t('card3Title')"></h3>
+                        <p class="text-2xl font-bold text-indigo-400 mt-2" x-text="t('card3Val')"></p>
                     </div>
                 </div>
 
                 <!-- Sovereign Prompt Interface -->
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl mt-6 space-y-4">
-                    <h3 class="text-sm font-semibold text-cyan-300">Sovereign Intelligent Assistant</h3>
+                    <h3 class="text-sm font-semibold text-cyan-300" x-text="t('assistantTitle')"></h3>
                     <div class="flex gap-3">
-                        <input type="text" x-model="userPrompt" placeholder="Ask your sovereign command center anything..." class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
-                        <button @click="callAI()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition shadow">Execute Command</button>
+                        <input type="text" x-model="userPrompt" :placeholder="t('promptPlaceholder')" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
+                        <button @click="callAI()" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition shadow" x-text="t('executeBtn')"></button>
                     </div>
                     <div x-show="aiResponse" class="bg-slate-950 border border-slate-800 p-4 rounded-lg mt-4 text-sm text-slate-300 font-mono" x-text="aiResponse"></div>
                 </div>
             </div>
 
-            <!-- Other Tabs Placeholders -->
+            <!-- Other Tabs Content -->
             <div x-show="activeTab === 'quantum'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">Quantum Core & Node Manager</h2>
+                <h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().quantum"></h2>
                 <p class="text-slate-400 text-sm">Manage sovereign decentralized nodes and computational clusters.</p>
             </div>
             <div x-show="activeTab === 'dimensions'" class="space-y-6">
-                <h2 class="text-2xl font-bold text-cyan-400">18 Dimensions of Life Matrix</h2>
+                <h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().dimensions"></h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <template x-for="i in 18">
                         <div class="bg-slate-900 border border-slate-800 p-4 rounded-lg">
@@ -126,26 +126,26 @@
                     </template>
                 </div>
             </div>
-            <div x-show="activeTab === 'orchestrator'"><h2 class="text-2xl font-bold text-cyan-400">Multi-Agent Orchestrator</h2></div>
-            <div x-show="activeTab === 'intervention'"><h2 class="text-2xl font-bold text-cyan-400">AI Intervention Engine</h2></div>
-            <div x-show="activeTab === 'contentHub'"><h2 class="text-2xl font-bold text-cyan-400">Content Automation Hub</h2></div>
-            <div x-show="activeTab === 'governance'"><h2 class="text-2xl font-bold text-cyan-400">Governance & Compliance Suite</h2></div>
-            <div x-show="activeTab === 'publicHealth'"><h2 class="text-2xl font-bold text-cyan-400">Public Health & Crisis Command</h2></div>
-            <div x-show="activeTab === 'repository'"><h2 class="text-2xl font-bold text-cyan-400">Knowledge & Research Repository</h2></div>
-            <div x-show="activeTab === 'vault'"><h2 class="text-2xl font-bold text-cyan-400">Secure Vault & Payment Systems</h2></div>
-            <div x-show="activeTab === 'terminal'"><h2 class="text-2xl font-bold text-cyan-400">Sovereign Terminal & Logs</h2></div>
+            <div x-show="activeTab === 'orchestrator'"><h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().orchestrator"></h2></div>
+            <div x-show="activeTab === 'intervention'"><h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().intervention"></h2></div>
+            <div x-show="activeTab === 'contentHub'"><h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().contentHub"></h2></div>
+            <div x-show="activeTab === 'governance'"><h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().governance"></h2></div>
+            <div x-show="activeTab === 'publicHealth'"><h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().publicHealth"></h2></div>
+            <div x-show="activeTab === 'repository'"><h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().repository"></h2></div>
+            <div x-show="activeTab === 'vault'"><h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().vault"></h2></div>
+            <div x-show="activeTab === 'terminal'"><h2 class="text-2xl font-bold text-cyan-400" x-text="tabsList().terminal"></h2></div>
 
         </main>
     </div>
 
-    <!-- Sign In / Sign Up Modal with Gmail Login -->
+    <!-- Sign In / Sign Up Modal -->
     <div x-show="showAuthModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-md p-6 rounded-2xl shadow-2xl space-y-6 relative">
             <button @click="showAuthModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-white">&times;</button>
             
             <div class="text-center space-y-2">
-                <h3 class="text-xl font-bold text-cyan-400">HDACAE Sovereign Access</h3>
-                <p class="text-xs text-slate-400">Sign in or create your sovereign account</p>
+                <h3 class="text-xl font-bold text-cyan-400" x-text="t('modalTitle')"></h3>
+                <p class="text-xs text-slate-400" x-text="t('modalSub')"></p>
             </div>
 
             <!-- Google Login Button -->
@@ -156,27 +156,25 @@
                     <path fill="#FBBC05" d="M5.28 14.25c-.25-.72-.38-1.49-.38-2.25s.13-1.53.38-2.25V6.6H1.2C.43 8.15 0 9.92 0 12s.43 3.85 1.2 5.4l4.08-3.15z"/>
                     <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.16 2.61 1.2 6.6l4.08 3.15c.95-2.84 3.6-4.95 6.72-4.95z"/>
                 </svg>
-                <span>Continue with Google (Gmail)</span>
+                <span x-text="t('googleBtn')"></span>
             </button>
 
             <div class="flex items-center my-4">
                 <div class="flex-grow border-t border-slate-800"></div>
-                <span class="px-3 text-xs text-slate-500 uppercase">or email</span>
+                <span class="px-3 text-xs text-slate-500 uppercase" x-text="t('orText')"></span>
                 <div class="flex-grow border-t border-slate-800"></div>
             </div>
 
             <!-- Email & Password Form -->
             <div class="space-y-4">
-                <input type="email" placeholder="Enter your email address" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
-                <input type="password" placeholder="Enter your password" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
-                <button @click="alert('Authenticated Successfully via Sovereign Protocol!')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-3 rounded-xl font-medium transition shadow">
-                    Authenticate / Sign In
-                </button>
+                <input type="email" :placeholder="t('emailPlaceholder')" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
+                <input type="password" :placeholder="t('passPlaceholder')" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-cyan-500">
+                <button @click="alert(t('authSuccess'))" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white py-3 rounded-xl font-medium transition shadow" x-text="t('authBtnText')"></button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Logic -->
+    <!-- JavaScript Logic with Multi-Language Support -->
     <script>
         function hdacaeApp() {
             return {
@@ -185,6 +183,101 @@
                 showAuthModal: false,
                 userPrompt: '',
                 aiResponse: '',
+                dict: {
+                    gu: {
+                        authBtn: 'સાઇન ઇન / સાઇન અપ',
+                        navTitle: 'મુખ્ય નેવિગેશન',
+                        visionBadge: '🌟 સાર્વભૌમ પ્લેટફોર્મ વિઝન',
+                        visionTitle: 'શું તમે તમારા જીવનના તમામ ક્ષેત્રોમાં સંપૂર્ણ નિયંત્રણ અને સફળતા ઇચ્છો છો?',
+                        visionDesc: 'આ એકમાત્ર એવી વ્યાપક સાર્વભૌમ સિસ્ટમ છે, જે સ્વાસ્થ્ય, માનસિક શાંતિ, આર્થિક સમૃદ્ધિ (ફાઇનાન્સ), નેતૃત્વ (લીડરશિપ), કટોકટી સંચાલન અને ગવર્નન્સ સહિતના જીવનના તમામ ૧૮ મહત્વપૂર્ણ પાસાઓ (Dimensions) પર ઊંડું વિશ્લેષણ અને સચોટ ઉકેલ આપે છે.',
+                        feat1Title: '🔒 સંપૂર્ણ ડેટા પ્રાઇવસી',
+                        feat1Desc: 'તમારો ડેટા સુરક્ષિત અને માત્ર તમારા નિયંત્રણમાં.',
+                        feat2Title: '⚡ ઝીરો લોકલ લોડ',
+                        feat2Desc: 'ક્લાઉડ પાવર દ્વારા સેકન્ડોમાં સચોટ પરિણામ.',
+                        feat3Title: '🎯 નિષ્ણાત અનુભવ',
+                        feat3Desc: 'દાયકાઓની લીડરશિપ અને પબ્લિક હેલ્થનું ભાથું.',
+                        card1Title: 'સક્રિય સાર્વભૌમ નોડ્સ',
+                        card1Val: 'HDACAE પ્રાઇમ નોડ',
+                        card2Title: 'મોનિટર થતા જીવન આયામો',
+                        card2Val: '૧૮ આયામો સક્રિય',
+                        card3Title: 'સિસ્ટમ સુરક્ષા સ્તર',
+                        card3Val: 'સોવરિન-મેક્સ',
+                        assistantTitle: 'સાર્વભૌમ બુદ્ધિશાળી સહાયક',
+                        promptPlaceholder: 'તમારા સાર્વભૌમ કંટ્રોલ સેન્ટરને કંઈપણ પૂછો...',
+                        executeBtn: 'એક્ઝિક્યુટ કમાન્ડ',
+                        modalTitle: 'HDACAE સાર્વભૌમ એક્સેસ',
+                        modalSub: 'સાઇન ઇન કરો અથવા તમારું સાર્વભૌમ એકાઉન્ટ બનાવો',
+                        googleBtn: 'ગૂગલ (Gmail) દ્વારા ચાલુ રાખો',
+                        orText: 'અથવા ઇમેઇલ',
+                        emailPlaceholder: 'તમારું ઇમેઇલ સરનામું દાખલ કરો',
+                        passPlaceholder: 'તમારો પાસવર્ડ દાખલ કરો',
+                        authSuccess: 'સાર્વભૌમ પ્રોટોકોલ દ્વારા સફળતાપૂર્વક પ્રમાણીકરણ થયું!',
+                        authBtnText: 'પ્રમાણીકરણ / સાઇન ઇન'
+                    },
+                    hi: {
+                        authBtn: 'साइन इन / साइन अप',
+                        navTitle: 'मुख्य नेविगेशन',
+                        visionBadge: '🌟 सॉवरेन प्लेटफॉर्म विजन',
+                        visionTitle: 'क्या आप अपने जीवन के सभी क्षेत्रों में पूर्ण नियंत्रण और सफलता चाहते हैं?',
+                        visionDesc: 'यह एकमात्र ऐसी व्यापक सॉवरेन प्रणाली है, जो स्वास्थ्य, मानसिक शांति, वित्तीय समृद्धि, नेतृत्व (लीडरशिप), संकट प्रबंधन और गवर्नेंस सहित जीवन के सभी १८ महत्वपूर्ण आयामों (Dimensions) पर गहन विश्लेषण और सटीक समाधान प्रदान करती है.',
+                        feat1Title: '🔒 पूर्ण डेटा गोपनीयता',
+                        feat1Desc: 'आपका डेटा एन्क्रिप्टेड और पूरी तरह आपके नियंत्रण में.',
+                        feat2Title: '⚡ शून्य लोकल लोड',
+                        feat2Desc: 'क्लाउड पावर द्वारा सेकंडों में सटीक परिणाम.',
+                        feat3Title: '🎯 विशेषज्ञ अनुभव',
+                        feat3Desc: 'दशकों की लीडरशिप और सार्वजनिक स्वास्थ्य का अनुभव.',
+                        card1Title: 'सक्रिय सॉवरेन नोड्स',
+                        card1Val: 'HDACAE प्राइम नोड',
+                        card2Title: 'निगरानी किए गए जीवन आयाम',
+                        card2Val: '१८ आयाम सक्रिय',
+                        card3Title: 'सिस्टम सुरक्षा स्तर',
+                        card3Val: 'सॉवरेन-मैक्स',
+                        assistantTitle: 'सॉवरेन बुद्धिमान सहायक',
+                        promptPlaceholder: 'अपने सॉवरेन कमांड सेंटर से कुछ भी पूछें...',
+                        executeBtn: 'कमांड निष्पादित करें',
+                        modalTitle: 'HDACAE सॉवरेन एक्सेस',
+                        modalSub: 'साइन इन करें या अपना सॉवरेन खाता बनाएं',
+                        googleBtn: 'गूगल (Gmail) के साथ जारी रखें',
+                        orText: 'अथवा ईमेल',
+                        emailPlaceholder: 'अपना ईमेल पता दर्ज करें',
+                        passPlaceholder: 'अपना पासवर्ड दर्ज करें',
+                        authSuccess: 'सॉवरेन प्रोटोकॉल के माध्यम से सफलतापूर्वक प्रमाणित!',
+                        authBtnText: 'प्रमाणित / साइन इन करें'
+                    },
+                    en: {
+                        authBtn: 'Sign In / Sign Up',
+                        navTitle: 'Master Navigation',
+                        visionBadge: '🌟 Sovereign Platform Vision',
+                        visionTitle: 'Do you desire absolute control and success across all dimensions of life?',
+                        visionDesc: 'This is the ultimate comprehensive sovereign system delivering deep analysis and exact solutions across all 18 dimensions of life, including health, mental peace, finance, leadership, crisis management, and governance.',
+                        feat1Title: '🔒 Absolute Privacy',
+                        feat1Desc: 'Your data is encrypted and strictly under your control.',
+                        feat2Title: '⚡ Zero Local Load',
+                        feat2Desc: 'Instant cloud execution without hardware burden.',
+                        feat3Title: '🎯 Expert Experience',
+                        feat3Desc: 'Decades of elite governance & leadership insights.',
+                        card1Title: 'Active Sovereign Nodes',
+                        card1Val: 'HDACAE Prime Node',
+                        card2Title: 'Life Dimensions Monitored',
+                        card2Val: '18 Dimensions Active',
+                        card3Title: 'System Security Level',
+                        card3Val: 'SOVEREIGN-MAX',
+                        assistantTitle: 'Sovereign Intelligent Assistant',
+                        promptPlaceholder: 'Ask your sovereign command center anything...',
+                        executeBtn: 'Execute Command',
+                        modalTitle: 'HDACAE Sovereign Access',
+                        modalSub: 'Sign in or create your sovereign account',
+                        googleBtn: 'Continue with Google (Gmail)',
+                        orText: 'or email',
+                        emailPlaceholder: 'Enter your email address',
+                        passPlaceholder: 'Enter your password',
+                        authSuccess: 'Authenticated Successfully via Sovereign Protocol!',
+                        authBtnText: 'Authenticate / Sign In'
+                    }
+                },
+                t(key) {
+                    return this.dict[this.currentLang][key] || key;
+                },
                 tabsList() {
                     if (this.currentLang === 'gu') {
                         return {
